@@ -54,7 +54,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 hitPosition = targetPosition;
 
         if (Physics.Raycast(ray, out hit))
-        {            
+        {
+            
             if (hit.collider.tag != "Player")
             {
                 Debug.Log("hi");
