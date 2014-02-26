@@ -4,8 +4,8 @@ using System.Collections;
 public class CameraMovement : MonoBehaviour
 {
     public Transform target;
-    public float distance = 15.0f;
-    public float height = 10.0f;
+    public float distance = 20.0f;
+    public float height = 7.0f;
     public float heightDamping = 2.0f;
     public float rotationDamping = 1.0f;
 
