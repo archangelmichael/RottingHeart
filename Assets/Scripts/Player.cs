@@ -4,15 +4,18 @@ using System.Collections;
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Camera))]
 
-public class Player : MonoBehaviour
+public class Player : Skill
 {
     public Camera lookAround1;
     public CharacterController charController;
-
+    public static bool gameOver = false;
+    
     private const float levelingMultiplier = 100;
 
     private const float maxHealth = 10000;
-    private float currentHealth;
+    public static float currentHealth;
+    public const float HealthBarMax = maxHealth;
+
     private float healthbarLength;
 
     private static bool playerIsDead = false;
@@ -39,7 +42,6 @@ public class Player : MonoBehaviour
         get { return Player.playerIsDead; }
         set { Player.playerIsDead = value; }
     }
-
     void Start()
     {
         currentHealth = maxHealth;
@@ -68,7 +70,7 @@ public class Player : MonoBehaviour
         GUI.Box(new Rect(10, Screen.height - 40, Screen.width / 4, 20), "Level " + level);
         GUI.Box(new Rect(10, Screen.height - 20, Screen.width / 4, 20), "Experience " + experience + "/" + levelingMultiplier * level);
     
-        if (playerIsDead || Input.GetKeyDown(KeyCode.Escape))
+        if (playerIsDead)
         {
             // Make a background box
             GUI.Box(new Rect(Screen.width/2 , Screen.height / 2, 150, 100), "You have been killed!");
@@ -79,7 +81,31 @@ public class Player : MonoBehaviour
             }
             if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 40, 80, 20), "Exit Game"))
             {
-                Application.Quit();
+                Application.LoadLevel(2);
+            }
+        }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 20, 80, 20), "Respawn"))
+            {
+                RespawnPlayer();
+            }
+            if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 40, 80, 20), "Exit Game"))
+            {
+                Application.LoadLevel(2);
+            }
+        }
+        if (gameOver)
+        {
+            int positionEdit = 100;
+            GUI.Box(new Rect(Screen.width / 2, Screen.height / 2 - positionEdit, 150, 100), "THE END!");
+            if (GUI.Button(new Rect(Screen.width / 2 + 1, Screen.height / 2 - positionEdit + 20, 100, 20), "Restart Gaem"))
+            {
+                Application.LoadLevel(1);
+            }
+            if (GUI.Button(new Rect(Screen.width / 2 + 1, Screen.height / 2 - positionEdit + 40, 100, 20), "Exit Game"))
+            {
+                Application.LoadLevel(2);
             }
         }
     }

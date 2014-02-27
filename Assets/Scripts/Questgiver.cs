@@ -26,7 +26,11 @@ public class Questgiver : MonoBehaviour {
                 case 0: FirstQuest(); break;
                 case 1: SecondQuest(); break;
                 case 2: ThirdQuest(); break;
-                default: GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 130, 100), "Spectacular WIN!\nThis Ends our\nDEMO");
+                default:
+                    {
+                        GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 130, 100), "Spectacular WIN!\nThis Ends our\nDEMO");
+                        Player.gameOver = true;
+                    }
                     break;
             }
             
@@ -72,11 +76,12 @@ public class Questgiver : MonoBehaviour {
         if (Quests.QuestStarted == 3 && Quests.TaskCompleted == 1)
         {
             Quests.QuestCompleted = 3;
+            
             return;
         }
 
         GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 170, 170), "Tremendous job!\nYou have proven yourself\nonce more\nand we are forever\nin your debt.\nThose monsters are!\nsent to us by the\nterrible skeleton lord\nso you need to\ngo finish him off.");
-
+        
     }
 
 }
