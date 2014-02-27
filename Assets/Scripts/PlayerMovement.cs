@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
             controller.SimpleMove(transform.forward * Speed);
             animation.CrossFade(run.name);
         }
-        else if (Vector3.Distance(transform.position, position) < Melee.weaponRange && colliderTag == "Enemy")
+        else if (Vector3.Distance(transform.position, position) < Melee.weaponRange && colliderTag != "Player")
         {
             Debug.Log("hi there");
             animation.Play("attack");

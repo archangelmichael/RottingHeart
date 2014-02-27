@@ -16,7 +16,7 @@ public class EnemyHealth : MonoBehaviour
     {
     }
 
-    void DamageEnemy(float damage)
+    void Damage(float damage)
     {
         currentEnemyHealth -= damage;
         if (currentEnemyHealth <= 0)
@@ -25,9 +25,10 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    void Dead()
+    public virtual void Dead()
     {
         animation.CrossFade("die");
         gameObject.SetActive(false);
+        Player.Experience += 50;
     }
 }

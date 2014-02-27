@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Melee : MonoBehaviour //, IMeleeAttack
 {
+    private static float damageCoef = 1;
+
     public static float weaponRange = 10;
     private static float damage = 50;
     private static float defence = 50;
@@ -42,17 +44,17 @@ public class Melee : MonoBehaviour //, IMeleeAttack
         string weapon = GetCurrentWeapon();
         if (weapon == "Spear")
         {
-            damage = 100;
+            damage = 100 * damageCoef ;
             weaponRange = 20;
         }
         else if (weapon == "Staff")
         {
-            damage = 120;
+            damage = 120 * damageCoef;
             weaponRange = 10;
         }
         else if (weapon == "Dagger")
         {
-            damage = 50;
+            damage = 50 * damageCoef;
             weaponRange = 5;
         }
     }
@@ -61,16 +63,22 @@ public class Melee : MonoBehaviour //, IMeleeAttack
         string shield = GetCurrentShield();
         if (shield == "Magic")
         {
-            defence = 100;
+            defence = 30;
         }
         else if (shield == "Bronze")
         {
-            defence = 70;
+            defence = 20;
         }
         else if (shield == "Wooden")
         {
-            defence = 50;
+            defence = 10;
         }
+    }
+
+    public static float DamageCoef
+    {
+        get { return Melee.damageCoef; }
+        set { Melee.damageCoef = value; }
     }
 
     void Update()
@@ -91,7 +99,7 @@ public class Melee : MonoBehaviour //, IMeleeAttack
         if (Time.time > attackTime)
         {
             Debug.Log("attack enemy!");
-            hit.transform.SendMessage("DamageEnemy", damage, SendMessageOptions.DontRequireReceiver);
+            hit.transform.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
             attackTime = Time.time + attackRepeatTime;
         }
     }

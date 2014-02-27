@@ -6,6 +6,10 @@ TagManager:
   - Questgiver
   - Weapon
   - Shield
+  - Boss
+  - Enemy
+  - Boss2
+  - Boss3
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

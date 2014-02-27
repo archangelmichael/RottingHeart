@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyAI : MonoBehaviour 
+public class EnemyAI : AI, IMovable
 {
 	public float distance;
     public Transform target;
@@ -35,13 +35,13 @@ public class EnemyAI : MonoBehaviour
         }
         if (distance < chaseDistance && distance > attackRange)
         {
-            Chase();
+            Move();
         }
-        if (distance < attackRange && PlayerHealth.playerIsDead)
+        if (distance < attackRange && Player.PlayerIsDead)
         {
             animation.Play("idle");
         }
-        else if (distance < attackRange && !PlayerHealth.playerIsDead)
+        else if (distance < attackRange && !Player.PlayerIsDead)
         {
             Attack();
         }
@@ -51,13 +51,13 @@ public class EnemyAI : MonoBehaviour
     {
         if (Time.time > attackTime)
         {
-            target.SendMessage("DamagePlayer",monsterDamage,SendMessageOptions.DontRequireReceiver);
+            target.SendMessage("Damage",monsterDamage,SendMessageOptions.DontRequireReceiver);
             attackTime = Time.time + attackRepeatTime;
             animation.Play("attack");
         }
     }
 
-    private void Chase()
+    public override void Move()
     {
         moveDirection = transform.forward;
         moveDirection *= moveSpeed;
