@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (hit.collider.tag != "Player")
                 {
-                    Debug.Log("Silence! I kill you!");
+                    //Debug.Log("Silence! I kill you!");
                     hitPosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
                 }
             }
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Vector3.Distance(transform.position, position) < Melee.weaponRange && colliderTag != "Player")
         {
-            Debug.Log("hi there");
+            //Debug.Log("hi there");
             animation.Play("attack");
             Melee.AttackEnemy(position, hit);
         }

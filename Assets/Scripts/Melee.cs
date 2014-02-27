@@ -98,7 +98,7 @@ public class Melee : MonoBehaviour //, IMeleeAttack
     {
         if (Time.time > attackTime)
         {
-            Debug.Log("attack enemy!");
+           // Debug.Log("attack enemy!");
             hit.transform.SendMessage("Damage", damage, SendMessageOptions.DontRequireReceiver);
             attackTime = Time.time + attackRepeatTime;
         }

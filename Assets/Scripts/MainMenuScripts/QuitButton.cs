@@ -4,7 +4,17 @@ using System;
 
 public class QuitButton : Button
 {
-    // change the text color when button pointed
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
     public override void OnMouseEnter()
     {
         renderer.material.color = Color.red;
