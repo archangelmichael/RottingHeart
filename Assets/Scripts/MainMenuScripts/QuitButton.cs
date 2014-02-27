@@ -2,21 +2,21 @@
 using System.Collections;
 using System;
 
-public class QuitGame : MonoBehaviour
+public class QuitButton : Button
 {
     // change the text color when button pointed
-    void OnMouseEnter()
+    public override void OnMouseEnter()
     {
         renderer.material.color = Color.red;
     }
 
-    void OnMouseExit()
+    public override void OnMouseExit()
     {
         renderer.material.color = Color.white;
     }
 
     // quit the game on mouse click
-    void OnMouseDown()
+    public override void OnMouseDown()
     {
         Application.Quit();
     }
